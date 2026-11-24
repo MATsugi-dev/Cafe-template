@@ -16,8 +16,8 @@ A modern, responsive cafe website template built with HTML and CSS. Designed for
 - Clean HTML and CSS
 
 ## 🛠️ Built With
-- HTML5
-- CSS3
+- HTML
+- CSS
 
 ## 📸 Preview
 Visit the live demo to see the website.
