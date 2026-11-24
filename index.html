@@ -1,174 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your Cafe Name | Coffee and pastries</title>
-<meta name="description" content="Short description of your cafe for search results.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#1d2b2a;
-  --paper:#e6efea;
-  --card:#ffffff;
-  --accent:#f2b632;
-  --blue:#2f5d8a;
-  --radius:18px;
-  --head:"Bricolage Grotesque",system-ui,sans-serif;
-  --body:"Figtree",system-ui,sans-serif;
-}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:1.05rem}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
-h1,h2,h3{font-family:var(--head);line-height:1.05}
-h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:1.5rem}
+  <!-- =========================================================
+       CAFE WEBSITE TEMPLATE
+       QUICK CUSTOMIZATION:
+       1. Change the cafe name in the HTML text.
+       2. Change colors inside :root below.
+       3. Replace the image URLs with your own photos.
+       4. Update the WhatsApp number in the JavaScript section.
+       ========================================================= -->
 
-header{padding:1rem 0}
-header .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem}
-.logo{font-family:var(--head);font-weight:800;font-size:1.3rem;text-decoration:none}
-nav{display:flex;gap:1.25rem;font-weight:600}
-nav a{text-decoration:none}
-nav a:hover{text-decoration:underline}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bean & Bloom | Coffee and pastries</title>
+  <meta name="description" content="Fresh coffee, handmade pastries, and cozy moments at Bean & Bloom Cafe.">
 
-.btn{display:inline-block;background:var(--ink);color:#fff;padding:.85rem 1.6rem;border-radius:999px;font-weight:600;text-decoration:none;transition:background .2s}
-.btn:hover{background:var(--blue)}
-.btn.alt{background:var(--accent);color:var(--ink)}
+  <!-- Google Fonts: You can change these font names if you want a different style. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-.hero{padding:3rem 0 4.5rem}
-.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:2rem;align-items:center}
-.hero h1{font-weight:800;font-size:clamp(3rem,9vw,6.2rem);letter-spacing:-.03em}
-.hero p{margin:1.25rem 0 1.75rem;max-width:30rem}
-.hero-art{aspect-ratio:1;background:var(--accent);border-radius:50%;display:grid;place-items:center;position:relative}
-.cup{width:48%;height:42%;background:var(--ink);border-radius:8px 8px 40% 40%;position:relative}
-.cup::after{content:"";position:absolute;right:-22%;top:18%;width:28%;height:42%;border:10px solid var(--ink);border-left:0;border-radius:0 40px 40px 0}
-.cup::before{content:"";position:absolute;left:12%;top:-14%;width:76%;height:10%;background:var(--blue);border-radius:50%}
+  <style>
+    /* ===================== 1. COLOR & STYLE SETTINGS =====================
+       Change these variables to recolor most of the website at once.
+       Example: change --accent from #b86b43 to another hex color.
+    ====================================================================== */
+    :root {
+      --bg: #f8f5ef;           /* Main page background */
+      --surface: #fffdf9;      /* Card background */
+      --text: #29231f;         /* Main text color */
+      --muted: #766b61;        /* Softer text */
+      --accent: #b86b43;       /* Buttons / highlights */
+      --accent-dark: #8f4e2d;  /* Accent hover */
+      --green: #344b3f;        /* Dark green section */
+      --border: #e8dfd4;       /* Lines and borders */
+      --radius: 22px;          /* Rounded corners */
+      --heading: "Playfair Display", Georgia, serif;
+      --body: "DM Sans", Arial, sans-serif;
+      --shadow: 0 14px 35px rgba(41, 35, 31, .08);
+    }
 
-section{padding:3.5rem 0}
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
-.menu-col{background:var(--card);border-radius:var(--radius);padding:1.5rem}
-.menu-col h3{font-size:1.4rem;margin-bottom:.75rem}
-.item{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px dashed #b9c9c2}
-.item:last-child{border:0}
-.item small{display:block;color:#51635f}
-.price{font-weight:600;white-space:nowrap}
+    /* Reset and basic page styles */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .section { padding: 82px 0; }
+    .eyebrow {
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+    h1, h2, h3 { line-height: 1.15; margin-top: 0; }
+    h1, h2 { font-family: var(--heading); }
+    h1 { font-size: clamp(2.7rem, 7vw, 5.5rem); letter-spacing: -.04em; }
+    h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    p { margin-top: 0; }
+    .section-intro { max-width: 620px; color: var(--muted); margin: -8px 0 30px; }
 
-.about{background:var(--ink);color:#fff}
-.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
-.about p+p{margin-top:1rem}
-.about-art{aspect-ratio:4/3;border-radius:var(--radius);background:var(--blue)}
+    /* ===================== 2. BUTTONS =====================
+       Customize button colors above in the :root variables.
+    ====================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-dark { background: var(--text); color: white; }
+    .btn-outline { border-color: var(--border); background: transparent; }
+    .btn-small { padding: 9px 14px; font-size: .9rem; }
 
-.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
-.hours li{list-style:none;display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid #b9c9c2}
-form{display:grid;gap:.75rem}
-label{font-weight:600}
-input,textarea{width:100%;font:inherit;padding:.7rem .9rem;border:2px solid #b9c9c2;border-radius:12px;background:#fff}
+    /* ===================== 3. HEADER / NAVIGATION ===================== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248, 245, 239, .94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232, 223, 212, .75);
+    }
+    .nav-wrap {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    /* Change the brand name here in the HTML: Bean & Bloom */
+    .brand {
+      font-family: var(--heading);
+      font-weight: 700;
+      font-size: 1.35rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { text-decoration: none; font-weight: 600; font-size: .94rem; }
+    .nav-links a:hover { color: var(--accent); }
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 8px 12px;
+      color: var(--text);
+    }
 
-footer{padding:2rem 0;text-align:center;font-size:.9rem}
+    /* ===================== 4. HERO SECTION =====================
+       Replace the hero photo URL with your own cafe/coffee image.
+    =========================================================== */
+    .hero { padding: 54px 0 72px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 52px;
+    }
+    .hero-copy p { max-width: 500px; color: var(--muted); font-size: 1.08rem; margin-bottom: 25px; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-photo {
+      min-height: 430px;
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      background: #d9c5ad;
+      box-shadow: var(--shadow);
+    }
+    .hero-photo img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; }
+    .photo-note {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      background: rgba(255,253,249,.92);
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: .9rem;
+    }
 
-@media (max-width:760px){
-  .hero .wrap,.about .wrap{grid-template-columns:1fr}
-  .hero-art{max-width:280px}
-  nav{gap:.9rem;font-size:.95rem}
-}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
-</style>
+    /* ===================== 5. MENU CARDS =====================
+       Edit menu names, descriptions and prices in the HTML.
+       Change each card's image URL to your own food photos.
+    ========================================================== */
+    .menu-section { background: var(--surface); }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
+    .section-heading h2 { margin-bottom: 0; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .menu-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .menu-card img { height: 220px; width: 100%; object-fit: cover; }
+    .menu-card-content { padding: 20px; }
+    .menu-card h3 { font-family: var(--heading); font-size: 1.35rem; margin-bottom: 7px; }
+    .menu-card p { color: var(--muted); font-size: .93rem; min-height: 48px; margin-bottom: 16px; }
+    .menu-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .price { font-weight: 700; font-size: 1.1rem; }
+
+    /* ===================== 6. ABOUT SECTION ===================== */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .about-image { border-radius: var(--radius); overflow: hidden; min-height: 340px; }
+    .about-image img { width: 100%; height: 100%; min-height: 340px; object-fit: cover; }
+    .about-copy p { color: var(--muted); }
+    .about-copy h2 { margin-bottom: 18px; }
+
+    /* ===================== 7. VISIT / HOURS / CONTACT ===================== */
+    .visit-section { background: var(--green); color: white; }
+    .visit-section .eyebrow { color: #e9bd8a; }
+    .visit-section .section-intro { color: rgba(255,255,255,.72); }
+    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .visit-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      padding: 26px;
+    }
+    .visit-card h3 { font-family: var(--heading); font-size: 1.5rem; margin-bottom: 16px; }
+    .hours-list { list-style: none; padding: 0; margin: 0; }
+    .hours-list li { display: flex; justify-content: space-between; gap: 15px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.16); }
+    .hours-list li:last-child { border-bottom: 0; }
+    .visit-card p { color: rgba(255,255,255,.78); }
+    .visit-section .btn-primary { background: #e9bd8a; color: #29231f; }
+    .visit-section .btn-primary:hover { background: #f0cea6; }
+
+    /* ===================== 8. FOOTER ===================== */
+    .footer { padding: 28px 0; }
+    .footer-wrap { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .footer p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a { text-decoration: none; font-size: .9rem; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ===================== 9. MOBILE RESPONSIVE SETTINGS =====================
+       These rules activate on smaller screens, such as phones.
+    ========================================================================== */
+    @media (max-width: 850px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero-photo, .hero-photo img { min-height: 340px; }
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-image, .about-image img { min-height: 280px; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 60px 0; }
+      .hero { padding-top: 36px; }
+      .nav-wrap { min-height: 66px; }
+      .menu-toggle { display: inline-flex; }
+      /* Mobile menu is hidden until the toggle button is pressed. */
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 66px;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 18px 20px 22px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links .btn { text-align: center; }
+      .menu-grid, .visit-grid { grid-template-columns: 1fr; }
+      .section-heading { align-items: start; flex-direction: column; }
+      .menu-card img { height: 210px; }
+      .hero-photo, .hero-photo img { min-height: 280px; }
+      .footer-wrap { flex-direction: column; align-items: flex-start; }
+    }
+    /* Respect users who prefer reduced motion. */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
 </head>
+
 <body>
+  <!-- ===================== HEADER ===================== -->
+  <header class="header">
+    <div class="container nav-wrap">
+      <!-- CUSTOMIZE: Replace Bean & Bloom with your cafe name. -->
+      <a class="brand" href="#top">Bean <span>&</span> Bloom</a>
 
-<header>
-  <div class="wrap">
-    <a class="logo" href="#top">Your Cafe</a>
-    <nav>
-      <a href="#menu">Menu</a>
-      <a href="#about">About</a>
-      <a href="#visit">Visit</a>
-    </nav>
-  </div>
-</header>
+      <!-- Mobile navigation button. JavaScript opens/closes the menu. -->
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation">☰ Menu</button>
 
-<main id="top">
-  <div class="hero">
-    <div class="wrap">
-      <div>
-        <h1>Good coffee, slow mornings.</h1>
-        <p>Freshly roasted beans and pastries baked every day. Drop in, stay a while.</p>
-        <a class="btn" href="#menu">See the menu</a>
-        <a class="btn alt" href="#visit">Find us</a>
-      </div>
-      <div class="hero-art" role="img" aria-label="Illustration of a coffee cup"><div class="cup"></div></div>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#menu">Menu</a>
+        <a href="#about">Our story</a>
+        <a href="#visit">Visit</a>
+        <a class="btn btn-primary btn-small" href="#menu">Order coffee</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <section id="menu">
-    <div class="wrap">
-      <h2>Today's menu</h2>
-      <div class="menu-grid">
-        <div class="menu-col">
-          <h3>Coffee</h3>
-          <div class="item"><span>Espresso<small>Double shot</small></span><span class="price">$2.50</span></div>
-          <div class="item"><span>Latte<small>Steamed milk</small></span><span class="price">$3.50</span></div>
-          <div class="item"><span>Cold brew<small>Steeped 18 hours</small></span><span class="price">$4.00</span></div>
+  <main id="top">
+    <!-- ===================== HERO / INTRO ===================== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Your neighborhood coffee spot</p>
+          <h1>Good coffee.<br>Better moments.</h1>
+          <p>Slow down, sip something lovely, and enjoy freshly brewed coffee and little treats made for your everyday moments.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#menu">Explore our menu</a>
+            <a class="btn btn-outline" href="#about">Our story</a>
+          </div>
         </div>
-        <div class="menu-col">
-          <h3>Bakery</h3>
-          <div class="item"><span>Butter croissant<small>Baked at 7 am</small></span><span class="price">$3.00</span></div>
-          <div class="item"><span>Banana bread<small>With walnuts</small></span><span class="price">$3.25</span></div>
-          <div class="item"><span>Cinnamon roll<small>Cream cheese glaze</small></span><span class="price">$3.75</span></div>
-        </div>
-        <div class="menu-col">
-          <h3>Not coffee</h3>
-          <div class="item"><span>Hot chocolate<small>Dark cocoa</small></span><span class="price">$3.50</span></div>
-          <div class="item"><span>Iced tea<small>Lemon and mint</small></span><span class="price">$3.00</span></div>
-          <div class="item"><span>Fresh juice<small>Ask for today's fruit</small></span><span class="price">$4.50</span></div>
+
+        <div class="hero-photo">
+          <!-- CUSTOMIZE: Replace this image URL with your cafe's hero photo. -->
+          <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85" alt="Cozy cafe interior with coffee">
+          <div class="photo-note">Made with care, served with warmth ☕</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="about" id="about">
-    <div class="wrap">
-      <div>
-        <h2>Our story</h2>
-        <p>Write two or three sentences about how your cafe started and what makes it different.</p>
-        <p>Mention where you get your beans, who bakes the pastries, and what guests can expect.</p>
-      </div>
-      <div class="about-art" role="img" aria-label="Photo placeholder"></div>
-    </div>
-  </section>
-
-  <section id="visit">
-    <div class="wrap">
-      <h2>Come by</h2>
-      <div class="info-grid">
-        <div>
-          <h3>Hours</h3>
-          <ul class="hours">
-            <li><span>Mon to Fri</span><span>7 am to 6 pm</span></li>
-            <li><span>Saturday</span><span>8 am to 8 pm</span></li>
-            <li><span>Sunday</span><span>8 am to 4 pm</span></li>
-          </ul>
-          <p style="margin-top:1rem">123 Sample Street, Your City<br>hello@yourcafe.com</p>
+    <!-- ===================== MENU ===================== -->
+    <section class="section menu-section" id="menu">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">A little something for you</p>
+            <h2>Customer favorites</h2>
+          </div>
+          <p class="section-intro">Coffee, comfort, and freshly made treats.<br>Tap “Order” to send your choice through WhatsApp.</p>
         </div>
-        <form action="#" method="post">
-          <h3>Send us a message</h3>
-          <label for="name">Name</label>
-          <input id="name" name="name" autocomplete="name" required>
-          <label for="msg">Message</label>
-          <textarea id="msg" name="message" rows="4" required></textarea>
-          <button class="btn" type="submit">Send message</button>
-        </form>
+
+        <div class="menu-grid">
+          <!-- MENU CARD: Edit product name, description, price, and image. -->
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1461023068261-6b3b2e3f3b3c?auto=format&fit=crop&w=900&q=80" alt="Iced latte">
+            <div class="menu-card-content">
+              <h3>Iced Latte</h3>
+              <p>Espresso, chilled milk, and a refreshing smooth finish.</p>
+              <div class="menu-bottom">
+                <span class="price">₱140</span>
+                <button class="btn btn-primary btn-small order-btn" data-product="Iced Latte - ₱140">Order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80" alt="Freshly brewed coffee">
+            <div class="menu-card-content">
+              <h3>House Brew</h3>
+              <p>Our daily coffee, balanced and aromatic, served hot.</p>
+              <div class="menu-bottom">
+                <span class="price">₱110</span>
+                <button class="btn btn-primary btn-small order-btn" data-product="House Brew - ₱110">Order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80" alt="Croissant pastry">
+            <div class="menu-card-content">
+              <h3>Butter Croissant</h3>
+              <p>Flaky, buttery layers baked until golden and crisp.</p>
+              <div class="menu-bottom">
+                <span class="price">₱95</span>
+                <button class="btn btn-primary btn-small order-btn" data-product="Butter Croissant - ₱95">Order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80" alt="Chocolate cake slice">
+            <div class="menu-card-content">
+              <h3>Chocolate Cake</h3>
+              <p>A rich chocolate slice for your sweet little break.</p>
+              <div class="menu-bottom">
+                <span class="price">₱160</span>
+                <button class="btn btn-primary btn-small order-btn" data-product="Chocolate Cake - ₱160">Order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80" alt="Iced matcha drink">
+            <div class="menu-card-content">
+              <h3>Iced Matcha</h3>
+              <p>Earthy matcha blended with milk and served over ice.</p>
+              <div class="menu-bottom">
+                <span class="price">₱150</span>
+                <button class="btn btn-primary btn-small order-btn" data-product="Iced Matcha - ₱150">Order</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=900&q=80" alt="Cookies">
+            <div class="menu-card-content">
+              <h3>Chocolate Cookies</h3>
+              <p>Soft-centered cookies with chocolate in every bite.</p>
+              <div class="menu-bottom">
+                <span class="price">₱75</span>
+                <button class="btn btn-primary btn-small order-btn" data-product="Chocolate Cookies - ₱75">Order</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT / STORY ===================== -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <!-- CUSTOMIZE: Replace with a photo of the cafe, staff, or coffee-making. -->
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=85" alt="Barista preparing coffee">
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">A little about us</p>
+          <h2>More than just a cup of coffee.</h2>
+          <!-- CUSTOMIZE: Write your cafe's real story here. -->
+          <p>Bean & Bloom was created for people who love good coffee, comforting food, and meaningful moments. Whether you're catching up with friends, studying, or simply taking a break, we hope you'll feel at home here.</p>
+          <p>Every cup is prepared with care, and every visit is a chance to make your day a little brighter.</p>
+          <a class="btn btn-dark" href="#visit">Find our cafe</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VISIT / CONTACT ===================== -->
+    <section class="section visit-section" id="visit">
+      <div class="container">
+        <p class="eyebrow">Come say hello</p>
+        <h2>We'd love to see you.</h2>
+        <p class="section-intro">Drop by for a cup, a treat, or a little time for yourself.</p>
+
+        <div class="visit-grid">
+          <div class="visit-card">
+            <h3>Opening hours</h3>
+            <!-- CUSTOMIZE: Change opening and closing times. -->
+            <ul class="hours-list">
+              <li><span>Monday – Friday</span><span>7 AM – 7 PM</span></li>
+              <li><span>Saturday</span><span>8 AM – 8 PM</span></li>
+              <li><span>Sunday</span><span>8 AM – 5 PM</span></li>
+            </ul>
+          </div>
+
+          <div class="visit-card">
+            <h3>Contact & location</h3>
+            <!-- CUSTOMIZE: Replace the address and contact details. -->
+            <p>123 Your Street, Your City, Philippines</p>
+            <p>hello@beanandbloom.example</p>
+            <a class="btn btn-primary" href="#" id="contactWhatsApp">Message us on WhatsApp</a>
+            <p style="margin-top:15px;font-size:.9rem;">For questions, orders, or reservations, send us a message.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <!-- CUSTOMIZE: Update cafe name and year. -->
+      <p>© <span id="year"></span> Bean & Bloom Cafe. Made with ☕</p>
+      <div class="footer-links">
+        <a href="#top">Back to top ↑</a>
+        <a href="#menu">Menu</a>
+        <a href="#visit">Contact</a>
       </div>
     </div>
-  </section>
-</main>
+  </footer>
 
-<footer>
-  <div class="wrap">&copy; 2026 Your Cafe. All rights reserved.</div>
-</footer>
+  <!-- ===================== JAVASCRIPT =====================
+       Beginner guide:
+       - waNumber: your WhatsApp number, country code included, no +, spaces, or dashes.
+         Philippines example format: 639171234567
+       - Message text can be edited below.
+       ==================================================== -->
+  <script>
+    // 1) CHANGE THIS to the cafe's WhatsApp number.
+    // Use country code, without the plus sign. Example PH: 639XXXXXXXXX
+    const waNumber = "639XXXXXXXXX";
 
+    // 2) Mobile navigation: toggle menu open/closed when the button is clicked.
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", function () {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.textContent = isOpen ? "✕ Close" : "☰ Menu";
+    });
+
+    // Close the mobile menu after a navigation link is selected.
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰ Menu";
+      });
+    });
+
+    // 3) Menu order buttons: send the chosen product to WhatsApp.
+    // The product name/price comes from each button's data-product attribute.
+    document.querySelectorAll(".order-btn").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const product = button.dataset.product;
+        const message = "Hi Bean & Bloom! I'd like to order: " + product + ". Please let me know how to proceed.";
+        const whatsappURL = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(message);
+        window.open(whatsappURL, "_blank", "noopener");
+      });
+    });
+
+    // 4) Contact button: opens WhatsApp with a general inquiry message.
+    const contactButton = document.getElementById("contactWhatsApp");
+    contactButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      const message = "Hi Bean & Bloom! I have a question.";
+      const whatsappURL = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(message);
+      window.open(whatsappURL, "_blank", "noopener");
+    });
+
+    // 5) Automatically update the copyright year.
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
-                              </html>
+</html>
